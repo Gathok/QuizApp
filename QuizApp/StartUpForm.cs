@@ -24,6 +24,7 @@ namespace QuizApp
             mathQuiz = new Quiz("math");
             flagQuiz = new Quiz("flag");
             languageQuiz = new Quiz("language");
+            FormClosing += new FormClosingEventHandler(StartUpForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
         private void btnMathQuiz_Click(object sender, EventArgs e)
@@ -33,21 +34,28 @@ namespace QuizApp
             quizForm.Show();
         }
 
-        private void btnFlagQuiz_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            quizForm = new QuizForm(flagQuiz);
-        }
-
         private void btnLanguageQuiz_Click(object sender, EventArgs e)
         {
             this.Hide();
             quizForm = new QuizForm(languageQuiz);
+            quizForm.Show();
+        }
+        private void btnGeneralQuiz_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            quizForm = new QuizForm(flagQuiz);
+            quizForm.Show();
         }
 
         private void btnFutherInfos_Click(object sender, EventArgs e)
         {
             infoForm = new InfoForm();
+        }
+
+        // close all forms when StartUpForm is closed
+        private void StartUpForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

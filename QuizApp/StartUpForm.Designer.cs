@@ -30,7 +30,7 @@
         {
             btnMathQuiz = new Button();
             label1 = new Label();
-            btnFlagQuiz = new Button();
+            btnGeneralQuiz = new Button();
             btnLanguageQuiz = new Button();
             btnFutherInfos = new Button();
             SuspendLayout();
@@ -56,22 +56,23 @@
             label1.TabIndex = 1;
             label1.Text = "Wähle dein Quiz";
             // 
-            // btnFlagQuiz
+            // btnGeneralQuiz
             // 
-            btnFlagQuiz.Enabled = false;
-            btnFlagQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFlagQuiz.Location = new Point(15, 72);
-            btnFlagQuiz.Name = "btnFlagQuiz";
-            btnFlagQuiz.Size = new Size(149, 29);
-            btnFlagQuiz.TabIndex = 2;
-            btnFlagQuiz.Text = "Flaggen Quiz";
-            btnFlagQuiz.UseVisualStyleBackColor = true;
+            btnGeneralQuiz.Enabled = false;
+            btnGeneralQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGeneralQuiz.Location = new Point(15, 107);
+            btnGeneralQuiz.Name = "btnGeneralQuiz";
+            btnGeneralQuiz.Size = new Size(149, 29);
+            btnGeneralQuiz.TabIndex = 2;
+            btnGeneralQuiz.Text = "Allgemeines Quiz";
+            btnGeneralQuiz.UseVisualStyleBackColor = true;
+            btnGeneralQuiz.Click += btnGeneralQuiz_Click;
             // 
             // btnLanguageQuiz
             // 
             btnLanguageQuiz.Enabled = false;
             btnLanguageQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLanguageQuiz.Location = new Point(15, 107);
+            btnLanguageQuiz.Location = new Point(15, 72);
             btnLanguageQuiz.Name = "btnLanguageQuiz";
             btnLanguageQuiz.Size = new Size(149, 29);
             btnLanguageQuiz.TabIndex = 3;
@@ -93,10 +94,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(176, 209);
+            ClientSize = new Size(176, 208);
             Controls.Add(btnFutherInfos);
             Controls.Add(btnLanguageQuiz);
-            Controls.Add(btnFlagQuiz);
+            Controls.Add(btnGeneralQuiz);
             Controls.Add(label1);
             Controls.Add(btnMathQuiz);
             Name = "StartUpForm";
@@ -109,7 +110,7 @@
 
         private Button btnMathQuiz;
         private Label label1;
-        private Button btnFlagQuiz;
+        private Button btnGeneralQuiz;
         private Button btnLanguageQuiz;
         private Button btnFutherInfos;
     }
