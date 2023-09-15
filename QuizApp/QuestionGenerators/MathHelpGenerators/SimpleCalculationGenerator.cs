@@ -42,7 +42,7 @@ namespace QuizApp.QuestionGenerators.MathHelpGenerators
 
         public string getModifiedAnswer(int[] numbers, int modifier)
         {
-            numbers[0] += modifier;
+            numbers[0] += modifier *;
             return calculate(numbers).ToString();
         }
 
@@ -77,6 +77,11 @@ namespace QuizApp.QuestionGenerators.MathHelpGenerators
                 default:
                     throw new Exception(operatorIndex.ToString() + " is not a valid operatorIndex");
             }
+        }
+
+        public void setOperatorIndex(int operatorIndex)
+        {
+            this.operatorIndex = operatorIndex;
         }
     }
 }

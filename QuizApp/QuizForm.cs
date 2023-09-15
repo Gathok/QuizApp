@@ -140,7 +140,7 @@ namespace QuizApp
                 }
             }
             setAllButtons(false);                   // deaktiviere alle Buttons
-            System.Threading.Thread.Sleep(2000);    // warte 2 Sekunden
+            System.Threading.Thread.Sleep(500);     // warte 0,5 Sekunden
             answerButton.BackColor = Color.FromArgb(136, 136, 136);   // farbe wieder zurücksetzen
             rightButton.BackColor = Color.FromArgb(136, 136, 136);
             setAllButtons(true);                    // buttons wieder aktivieren
