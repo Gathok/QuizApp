@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuizApp.DataTypes;
 
 namespace QuizApp
 {
@@ -16,96 +17,137 @@ namespace QuizApp
         private int correctAnswer = 0;
         private int score = 0;
         private ScoreTimer scoreTimer;
+        private Form parent;
 
-        public QuizForm(Quiz quiz)
+        public QuizForm(Form parent, Quiz quiz)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.parent = parent;       // setze parent Form um wieder aufzurufen nach beeenden des Quiz und um es zu verstecken
             this.quiz = quiz;
-            // ändere Titel vom Form
-            this.Text = quiz.Name;
-            // set progressbar max value
-            progressBar.Maximum = quiz.NumberOfQuestions;
+            this.Text = quiz.Name;      // ändere Titel vom Form
+            progressBar.Maximum = quiz.NumberOfQuestions;   // setze maximale Value für ProgressBar auf Anzahl der Fragen
             scoreTimer = new ScoreTimer();
             FormClosing += new FormClosingEventHandler(QuizForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
         private void QuizForm_Load(object sender, EventArgs e)
         {
-            if (!quiz.hasMoreQuestions())
+            quiz.restart();     // erzeuge eine neue zufällige Reihenfolge der Fragen + update falls neue Fragen hinzugefügt worden sind
+            if (!quiz.hasMoreQuestions())   // überprüfe ob Fragen vorhanden
             {
-                MessageBox.Show("Es gibt noch keine Fragen :c");
+                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind keine Fragen für dieses Quiz vorhanden!", "Keine Fragen");  // wenn nicht, zeige Fehlermeldung
+                msgBox.ShowDialog();
+                this.Close();   // schließe/öffne gar nicht erst Form
             }
-            this.nextQuestion();
+            else if (quiz.NumberOfQuestions <= 5)   // wenn 5 oder weniger Fragen, frage ob starten
+            {
+                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind nur " + quiz.NumberOfQuestions + " Fragen vorhanden!\n\n" +
+                                       "Möchtest du trotzdem starten?", "Wenige Fragen", "Ja", "Nein");
+                msgBox.ShowDialog();
+                if (msgBox.DialogResult == DialogResult.Yes)  // wenn ja, starte Quiz/erste Frage
+                {
+                    parent.Hide();  // verstecke parent Form
+                    this.nextQuestion();
+                }
+                else if (msgBox.DialogResult == DialogResult.No)  // wenn nein, schließe QuizForm
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                parent.Hide();  // verstecke parent Form
+                this.nextQuestion();    // starte Quiz/erste Frage
+            }
         }
 
         private void nextQuestion()
         {
-            if (!quiz.hasMoreQuestions())
+            if (!quiz.hasMoreQuestions())   // überprüfe ob Quizz beendet 
             {
-                // Zeige Erfolgsstatistik
-                MessageBox.Show("Du hast " + score + " von " + quiz.NumberOfQuestions + " Fragen richtig beantwortet!");
+                timer.Stop();               // stoppe Timer
+                string timeNeeded = scoreTimer.ToString();    // speichere Zeit
+                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Du hast " + score + " von " + quiz.NumberOfQuestions + " Fragen richtig beantwortet!" +
+                    "\n\nDeine Zeit: " + timeNeeded, "Ergebnis", "Wiederholung", "Hauptmenü"); // Zeige Ergebnis
+                msgBox.ShowDialog();
+                reset();
+                if (msgBox.DialogResult == DialogResult.Yes)  // wenn Wiederholung gewählt, starte Quiz neu
+                {
+                    timer.Start();
+                    this.nextQuestion();
+                }
+                else if (msgBox.DialogResult == DialogResult.No)  // wenn Hauptmenü gewählt, schließe QuizForm und zeige StartUpForm
+                {
+                    this.Close();
+                    parent.Show();
+                }
             }
             else
             {
-                Question question = quiz.getNextQuestion();
-                labelQuestion.Text = question.Text;
+                Question question = quiz.getNextQuestion(); // hole nächste Frage
+                labelQuestion.Text = question.Frage;        // setze Frage und Antworten auf Label und Buttons
                 btnAnswer1.Text = question.Answers[0];
                 btnAnswer2.Text = question.Answers[1];
                 btnAnswer3.Text = question.Answers[2];
                 btnAnswer4.Text = question.Answers[3];
-                correctAnswer = question.CorrectAnswer;
-                progressBar.Value = quiz.NumberOfQuestions - quiz.QuestionsLeft;
+                correctAnswer = question.CorrectAnswer;     // speichere richtige Antwort
+                progressBar.Value = quiz.NumberOfQuestions - quiz.QuestionsLeft;    // update ProgressBar
             }
         }
 
-        // btn color green when true, red when false and make right answer green, next question after 2 sec
+        // Quiz zurücksetzen
+        private void reset()
+        {
+            quiz.restart();
+            score = 0;
+            labelScore.Text = "Score: " + score;
+            progressBar.Value = 0;
+            scoreTimer.reset();
+        }
+
         private void questionAnswer(Button answerButton, int answer)
         {
-            Button rightButton = answerButton;
+            Button rightButton = answerButton;  // Annahme: richtige Antwort
 
-            if (answer == correctAnswer)
+            if (answer == correctAnswer)        // Überprüfe Antwort
             {
-                answerButton.BackColor = Color.Green;
-                score++;
-                labelScore.Text = "Score: " + score;
+                answerButton.BackColor = Color.FromArgb(46, 204, 64);   // wenn richtig, färbe Button grün
+                score++;                                                // erhöhe Score
+                labelScore.Text = "Score: " + score;                    // update Score Label
             }
             else
             {
-                answerButton.BackColor = Color.Red;
+                answerButton.BackColor = Color.FromArgb(255, 65, 54);   // wenn falsch, färbe Button rot
                 switch (correctAnswer)
                 {
-                    case 0:
-                        btnAnswer1.BackColor = Color.Green;
+                    case 0:                                                 // färbe richtigen Button grün
+                        btnAnswer1.BackColor = Color.FromArgb(46, 204, 64);
                         rightButton = btnAnswer1;
                         break;
                     case 1:
-                        btnAnswer2.BackColor = Color.Green;
+                        btnAnswer2.BackColor = Color.FromArgb(46, 204, 64);
                         rightButton = btnAnswer2;
                         break;
                     case 2:
-                        btnAnswer3.BackColor = Color.Green;
+                        btnAnswer3.BackColor = Color.FromArgb(46, 204, 64);
                         rightButton = btnAnswer3;
                         break;
                     case 3:
-                        btnAnswer4.BackColor = Color.Green;
+                        btnAnswer4.BackColor = Color.FromArgb(46, 204, 64);
                         rightButton = btnAnswer4;
                         break;
                 }
             }
-            // disable all buttons
-            setAllButtons(false);
-            // wait 2 sec
-            System.Threading.Thread.Sleep(2000);
-            // reset button color
-            answerButton.BackColor = Color.White;
-            rightButton.BackColor = Color.White;
-            // enable all buttons
-            setAllButtons(true);
-            // next question
-            this.nextQuestion();
+            setAllButtons(false);                   // deaktiviere alle Buttons
+            System.Threading.Thread.Sleep(2000);    // warte 2 Sekunden
+            answerButton.BackColor = Color.FromArgb(136, 136, 136);   // farbe wieder zurücksetzen
+            rightButton.BackColor = Color.FromArgb(136, 136, 136);
+            setAllButtons(true);                    // buttons wieder aktivieren
+            this.nextQuestion();                    // nächste Frage
         }
 
-        // enable or disable all buttons
+        // de-/aktiviere alle Buttons
         private void setAllButtons(bool enabled)
         {
             btnAnswer1.Enabled = enabled;
@@ -114,7 +156,7 @@ namespace QuizApp
             btnAnswer4.Enabled = enabled;
         }
 
-        // when button pressed, check if right: call fuc questionAnswer
+        // wenn Antwort-Button geklickt, rufe questionAnswer() mit entsprechendem Button und Antwort auf
         private void btnAnswer1_Click(object sender, EventArgs e)
         {
             this.questionAnswer(btnAnswer1, 0);
@@ -135,18 +177,33 @@ namespace QuizApp
             this.questionAnswer(btnAnswer4, 3);
         }
 
-        // wenn geschlossen, zeige StartUpForm
+        // wenn geschlossen, zeige wieder StartUpForm
         private void QuizForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            StartUpForm startUpForm = new StartUpForm();
-            startUpForm.Show();
+            // wenn QuizForm ohne beenden des Quiz geschlossen wird, fragen ob wirklich beenden
+            if (quiz.QuestionsLeft != quiz.NumberOfQuestions)
+            {
+                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Möchtest du das Quiz wirklich beenden?", "Quiz beenden", "Ja", "Nein");
+                msgBox.ShowDialog();
+                if (msgBox.DialogResult == DialogResult.Yes)  // wenn ja, schließe QuizForm und zeige StartUpForm
+                {
+                    parent.Show();
+                }
+                else if (msgBox.DialogResult == DialogResult.No)  // wenn nein, schließe CustomMessageBox
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                parent.Show();
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            // add 0.1 sec to label Timer in Format "00:00,00" (min:sec,millisec)
-            scoreTimer.addTime(100);
-            labelTimer.Text = scoreTimer.ToString();
+            scoreTimer.addTime(100);                    // füge 100ms zur Zeit hinzu
+            labelTimer.Text = scoreTimer.ToString();    // update Timer Label
         }
     }
 }

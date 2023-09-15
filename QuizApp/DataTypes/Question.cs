@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizApp
+namespace QuizApp.DataTypes
 {
     public class Question
     {
@@ -42,7 +42,7 @@ namespace QuizApp
 
         }
 
-        public string Text
+        public string Frage
         {
             get { return question; }
         }

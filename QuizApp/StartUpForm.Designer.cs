@@ -37,74 +37,80 @@
             // 
             // btnMathQuiz
             // 
+            btnMathQuiz.BackColor = Color.FromArgb(136, 136, 136);
+            btnMathQuiz.FlatStyle = FlatStyle.Flat;
             btnMathQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMathQuiz.Location = new Point(14, 49);
-            btnMathQuiz.Margin = new Padding(3, 4, 3, 4);
+            btnMathQuiz.ForeColor = SystemColors.ControlText;
+            btnMathQuiz.Location = new Point(15, 37);
             btnMathQuiz.Name = "btnMathQuiz";
-            btnMathQuiz.Size = new Size(170, 39);
+            btnMathQuiz.Size = new Size(149, 29);
             btnMathQuiz.TabIndex = 0;
             btnMathQuiz.Text = "Mathe Quiz";
-            btnMathQuiz.UseVisualStyleBackColor = true;
+            btnMathQuiz.UseVisualStyleBackColor = false;
             btnMathQuiz.Click += btnMathQuiz_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial Narrow", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(14, 12);
+            label1.ForeColor = Color.FromArgb(235, 235, 235);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(185, 31);
+            label1.Size = new Size(149, 25);
             label1.TabIndex = 1;
             label1.Text = "Wähle dein Quiz";
             // 
             // btnGeneralQuiz
             // 
-            btnGeneralQuiz.Enabled = false;
+            btnGeneralQuiz.BackColor = Color.FromArgb(136, 136, 136);
+            btnGeneralQuiz.FlatStyle = FlatStyle.Flat;
             btnGeneralQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGeneralQuiz.Location = new Point(17, 143);
-            btnGeneralQuiz.Margin = new Padding(3, 4, 3, 4);
+            btnGeneralQuiz.Location = new Point(15, 107);
             btnGeneralQuiz.Name = "btnGeneralQuiz";
-            btnGeneralQuiz.Size = new Size(170, 39);
+            btnGeneralQuiz.Size = new Size(149, 29);
             btnGeneralQuiz.TabIndex = 2;
             btnGeneralQuiz.Text = "Allgemeines Quiz";
-            btnGeneralQuiz.UseVisualStyleBackColor = true;
+            btnGeneralQuiz.UseVisualStyleBackColor = false;
             btnGeneralQuiz.Click += btnGeneralQuiz_Click;
             // 
             // btnLanguageQuiz
             // 
-            btnLanguageQuiz.Enabled = false;
+            btnLanguageQuiz.BackColor = Color.FromArgb(136, 136, 136);
+            btnLanguageQuiz.FlatStyle = FlatStyle.Flat;
             btnLanguageQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLanguageQuiz.Location = new Point(17, 96);
-            btnLanguageQuiz.Margin = new Padding(3, 4, 3, 4);
+            btnLanguageQuiz.Location = new Point(15, 72);
             btnLanguageQuiz.Name = "btnLanguageQuiz";
-            btnLanguageQuiz.Size = new Size(170, 39);
+            btnLanguageQuiz.Size = new Size(149, 29);
             btnLanguageQuiz.TabIndex = 3;
             btnLanguageQuiz.Text = "Sprachen Quiz";
-            btnLanguageQuiz.UseVisualStyleBackColor = true;
+            btnLanguageQuiz.UseVisualStyleBackColor = false;
+            btnLanguageQuiz.Click += btnLanguageQuiz_Click;
             // 
             // btnFutherInfos
             // 
+            btnFutherInfos.BackColor = Color.FromArgb(136, 136, 136);
+            btnFutherInfos.FlatStyle = FlatStyle.Flat;
             btnFutherInfos.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFutherInfos.Location = new Point(17, 225);
-            btnFutherInfos.Margin = new Padding(3, 4, 3, 4);
+            btnFutherInfos.Location = new Point(15, 169);
             btnFutherInfos.Name = "btnFutherInfos";
-            btnFutherInfos.Size = new Size(170, 39);
+            btnFutherInfos.Size = new Size(149, 29);
             btnFutherInfos.TabIndex = 4;
             btnFutherInfos.Text = "Mehr Infos";
-            btnFutherInfos.UseVisualStyleBackColor = true;
+            btnFutherInfos.UseVisualStyleBackColor = false;
             btnFutherInfos.Click += btnFutherInfos_Click;
             // 
             // StartUpForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(201, 278);
+            BackColor = Color.FromArgb(35, 35, 35);
+            ClientSize = new Size(176, 208);
             Controls.Add(btnFutherInfos);
             Controls.Add(btnLanguageQuiz);
             Controls.Add(btnGeneralQuiz);
             Controls.Add(label1);
             Controls.Add(btnMathQuiz);
-            Margin = new Padding(3, 4, 3, 4);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "StartUpForm";
             Text = "Quiz Wahl";
             ResumeLayout(false);

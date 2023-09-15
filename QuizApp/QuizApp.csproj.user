@@ -4,6 +4,9 @@
     <Compile Update="AddQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CustomMesssageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>

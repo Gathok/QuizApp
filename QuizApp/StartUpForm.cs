@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuizApp.DataTypes;
 
 namespace QuizApp
 {
@@ -21,44 +22,60 @@ namespace QuizApp
         public StartUpForm()
         {
             InitializeComponent();
-            mathQuiz = new Quiz("math");
+            this.StartPosition = FormStartPosition.CenterScreen;
+            mathQuiz = new Quiz("math");        // erstelle Quiz Objekte
             flagQuiz = new Quiz("flag");
             languageQuiz = new Quiz("language");
             FormClosing += new FormClosingEventHandler(StartUpForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
+        // starte QuizForm mit jeweiligem Quiz
+        // übergebe StartUpForm um wieder aufzurufen nach beeenden des Quiz
         private void btnMathQuiz_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            quizForm = new QuizForm(mathQuiz);
+            quizForm = new QuizForm(this, mathQuiz);
             quizForm.Show();
         }
 
         private void btnLanguageQuiz_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            quizForm = new QuizForm(languageQuiz);
+            quizForm = new QuizForm(this, languageQuiz);
             quizForm.Show();
         }
 
         private void btnGeneralQuiz_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            quizForm = new QuizForm(flagQuiz);
+            quizForm = new QuizForm(this, flagQuiz);
             quizForm.Show();
         }
 
-        // close all forms when StartUpForm is closed
+        // beende Anwendung wenn StartUpForm geschlossen wird
         private void StartUpForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
+        // öffne InfoForm
         private void btnFutherInfos_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            infoForm = new InfoForm();
+            infoForm = new InfoForm(this);
             infoForm.Show();
+        }
+
+        public void addQuizQuestion(string quizType, Question question)
+        {
+            if (quizType == "math")
+            {
+                mathQuiz.addQuestion(question);
+            }
+            else if (quizType == "flag")
+            {
+                flagQuiz.addQuestion(question);
+            }
+            else if (quizType == "language")
+            {
+                languageQuiz.addQuestion(question);
+            }
         }
     }
 }

@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\malar\\.nuget\\packages\\": {}
+    "C:\\Users\\Malte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\malar\\Documents\\Codes\\QuizApp\\QuizApp\\QuizApp.csproj",
+      "projectUniqueName": "E:\\Codes\\C#\\QuizApp\\QuizApp\\QuizApp.csproj",
       "projectName": "QuizApp",
-      "projectPath": "C:\\Users\\malar\\Documents\\Codes\\QuizApp\\QuizApp\\QuizApp.csproj",
-      "packagesPath": "C:\\Users\\malar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\malar\\Documents\\Codes\\QuizApp\\QuizApp\\obj\\",
+      "projectPath": "E:\\Codes\\C#\\QuizApp\\QuizApp\\QuizApp.csproj",
+      "packagesPath": "C:\\Users\\Malte\\.nuget\\packages\\",
+      "outputPath": "E:\\Codes\\C#\\QuizApp\\QuizApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\malar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Malte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
