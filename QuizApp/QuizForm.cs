@@ -15,20 +15,26 @@ namespace QuizApp
         private Quiz quiz;
         private int correctAnswer = 0;
         private int score = 0;
+        private ScoreTimer scoreTimer;
 
         public QuizForm(Quiz quiz)
         {
             InitializeComponent();
             this.quiz = quiz;
-            // change titel of form to quiz Name
+            // ändere Titel vom Form
             this.Text = quiz.Name;
             // set progressbar max value
             progressBar.Maximum = quiz.NumberOfQuestions;
+            scoreTimer = new ScoreTimer();
             FormClosing += new FormClosingEventHandler(QuizForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
         private void QuizForm_Load(object sender, EventArgs e)
         {
+            if (!quiz.hasMoreQuestions())
+            {
+                MessageBox.Show("Es gibt noch keine Fragen :c");
+            }
             this.nextQuestion();
         }
 
@@ -36,7 +42,7 @@ namespace QuizApp
         {
             if (!quiz.hasMoreQuestions())
             {
-                // show score
+                // Zeige Erfolgsstatistik
                 MessageBox.Show("Du hast " + score + " von " + quiz.NumberOfQuestions + " Fragen richtig beantwortet!");
             }
             else
@@ -61,6 +67,7 @@ namespace QuizApp
             {
                 answerButton.BackColor = Color.Green;
                 score++;
+                labelScore.Text = "Score: " + score;
             }
             else
             {
@@ -133,6 +140,13 @@ namespace QuizApp
         {
             StartUpForm startUpForm = new StartUpForm();
             startUpForm.Show();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            // add 0.1 sec to label Timer in Format "00:00,00" (min:sec,millisec)
+            scoreTimer.addTime(100);
+            labelTimer.Text = scoreTimer.ToString();
         }
     }
 }

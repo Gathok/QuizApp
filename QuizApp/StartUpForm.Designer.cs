@@ -38,9 +38,10 @@
             // btnMathQuiz
             // 
             btnMathQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMathQuiz.Location = new Point(12, 37);
+            btnMathQuiz.Location = new Point(14, 49);
+            btnMathQuiz.Margin = new Padding(3, 4, 3, 4);
             btnMathQuiz.Name = "btnMathQuiz";
-            btnMathQuiz.Size = new Size(149, 29);
+            btnMathQuiz.Size = new Size(170, 39);
             btnMathQuiz.TabIndex = 0;
             btnMathQuiz.Text = "Mathe Quiz";
             btnMathQuiz.UseVisualStyleBackColor = true;
@@ -50,9 +51,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial Narrow", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(14, 12);
             label1.Name = "label1";
-            label1.Size = new Size(149, 25);
+            label1.Size = new Size(185, 31);
             label1.TabIndex = 1;
             label1.Text = "Wähle dein Quiz";
             // 
@@ -60,9 +61,10 @@
             // 
             btnGeneralQuiz.Enabled = false;
             btnGeneralQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGeneralQuiz.Location = new Point(15, 107);
+            btnGeneralQuiz.Location = new Point(17, 143);
+            btnGeneralQuiz.Margin = new Padding(3, 4, 3, 4);
             btnGeneralQuiz.Name = "btnGeneralQuiz";
-            btnGeneralQuiz.Size = new Size(149, 29);
+            btnGeneralQuiz.Size = new Size(170, 39);
             btnGeneralQuiz.TabIndex = 2;
             btnGeneralQuiz.Text = "Allgemeines Quiz";
             btnGeneralQuiz.UseVisualStyleBackColor = true;
@@ -72,34 +74,37 @@
             // 
             btnLanguageQuiz.Enabled = false;
             btnLanguageQuiz.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLanguageQuiz.Location = new Point(15, 72);
+            btnLanguageQuiz.Location = new Point(17, 96);
+            btnLanguageQuiz.Margin = new Padding(3, 4, 3, 4);
             btnLanguageQuiz.Name = "btnLanguageQuiz";
-            btnLanguageQuiz.Size = new Size(149, 29);
+            btnLanguageQuiz.Size = new Size(170, 39);
             btnLanguageQuiz.TabIndex = 3;
             btnLanguageQuiz.Text = "Sprachen Quiz";
             btnLanguageQuiz.UseVisualStyleBackColor = true;
             // 
             // btnFutherInfos
             // 
-            btnFutherInfos.Enabled = false;
             btnFutherInfos.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFutherInfos.Location = new Point(15, 169);
+            btnFutherInfos.Location = new Point(17, 225);
+            btnFutherInfos.Margin = new Padding(3, 4, 3, 4);
             btnFutherInfos.Name = "btnFutherInfos";
-            btnFutherInfos.Size = new Size(149, 29);
+            btnFutherInfos.Size = new Size(170, 39);
             btnFutherInfos.TabIndex = 4;
             btnFutherInfos.Text = "Mehr Infos";
             btnFutherInfos.UseVisualStyleBackColor = true;
+            btnFutherInfos.Click += btnFutherInfos_Click;
             // 
             // StartUpForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(176, 208);
+            ClientSize = new Size(201, 278);
             Controls.Add(btnFutherInfos);
             Controls.Add(btnLanguageQuiz);
             Controls.Add(btnGeneralQuiz);
             Controls.Add(label1);
             Controls.Add(btnMathQuiz);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "StartUpForm";
             Text = "Quiz Wahl";
             ResumeLayout(false);

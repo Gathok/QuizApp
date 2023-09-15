@@ -40,6 +40,7 @@ namespace QuizApp
             quizForm = new QuizForm(languageQuiz);
             quizForm.Show();
         }
+
         private void btnGeneralQuiz_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -47,15 +48,17 @@ namespace QuizApp
             quizForm.Show();
         }
 
-        private void btnFutherInfos_Click(object sender, EventArgs e)
-        {
-            infoForm = new InfoForm();
-        }
-
         // close all forms when StartUpForm is closed
         private void StartUpForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnFutherInfos_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            infoForm = new InfoForm();
+            infoForm.Show();
         }
     }
 }

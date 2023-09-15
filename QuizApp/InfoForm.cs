@@ -16,5 +16,10 @@ namespace QuizApp
         {
             InitializeComponent();
         }
+
+        private void btnAddMathQ_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
