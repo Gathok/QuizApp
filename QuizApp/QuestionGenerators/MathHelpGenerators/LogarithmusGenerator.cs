@@ -27,7 +27,8 @@ namespace QuizApp.QuestionGenerators.MathHelpGenerators
 
         public string getModifiedAnswer(int[] numbers, int modifier)
         {
-            return (numbers[1] + modifier).ToString();
+            numbers[1] += modifier;
+            return getAnswer(numbers);
         }
 
         public int[] getNumbers()

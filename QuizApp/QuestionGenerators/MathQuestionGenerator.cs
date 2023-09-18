@@ -27,6 +27,11 @@ namespace QuizApp.QuestionGenerators
 
         public Question generateRandomQuestion()
         {
+            return this.generateRandomQuestionv1();
+        }
+
+        public Question generateRandomQuestionv1()
+        {
             mathHelpGenerators[3] = new SimpleCalculationGenerator();                   // Neuen Opterator für SimpleCalculationGenerator generieren
 
             int questionType = random.Next(8);                                          // zufälligen Fragetyp generieren:
