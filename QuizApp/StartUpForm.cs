@@ -14,8 +14,8 @@ namespace QuizApp
     public partial class StartUpForm : Form
     {
         private Quiz mathQuiz;
-        private Quiz flagQuiz;
         private Quiz languageQuiz;
+        private Quiz generalQuiz;
         private QuizForm quizForm;
         private InfoForm infoForm;
 
@@ -24,8 +24,8 @@ namespace QuizApp
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             mathQuiz = new Quiz("math");        // erstelle Quiz Objekte
-            flagQuiz = new Quiz("flag");
             languageQuiz = new Quiz("language");
+            generalQuiz = new Quiz("general");
             FormClosing += new FormClosingEventHandler(StartUpForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
@@ -45,7 +45,7 @@ namespace QuizApp
 
         private void btnGeneralQuiz_Click(object sender, EventArgs e)
         {
-            quizForm = new QuizForm(this, flagQuiz);
+            quizForm = new QuizForm(this, generalQuiz);
             quizForm.Show();
         }
 
@@ -68,13 +68,13 @@ namespace QuizApp
             {
                 mathQuiz.addQuestion(question);
             }
-            else if (quizType == "flag")
-            {
-                flagQuiz.addQuestion(question);
-            }
             else if (quizType == "language")
             {
                 languageQuiz.addQuestion(question);
+            }
+            else if (quizType == "general")
+            {
+                generalQuiz.addQuestion(question);
             }
         }
     }

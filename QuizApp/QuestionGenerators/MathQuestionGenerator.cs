@@ -18,11 +18,14 @@ namespace QuizApp.QuestionGenerators
         public MathQuestionGenerator()
         {
             random = new Random();
-            mathHelpGenerators = new MathHelpGenerator[4];               // für jeden FragenTyp einen Generator erstellen
-            mathHelpGenerators[0] = new PowerOfTowGenerator();           // und diesen in ein Array speichern
-            mathHelpGenerators[1] = new RootGenerator();
+            mathHelpGenerators = new MathHelpGenerator[7];               // für jeden FragenTyp einen Generator erstellen
+            mathHelpGenerators[0] = new AdditionGenerator();
+            mathHelpGenerators[1] = new DivisionGenerator();
             mathHelpGenerators[2] = new LogarithmusGenerator();
-            mathHelpGenerators[3] = new SimpleCalculationGenerator();
+            mathHelpGenerators[3] = new MultiplicationGenerator();
+            mathHelpGenerators[4] = new PowerOfTowGenerator();
+            mathHelpGenerators[5] = new RootGenerator();
+            mathHelpGenerators[6] = new SubstractionGenerator();
         }
 
         public Question generateRandomQuestion()
@@ -32,13 +35,8 @@ namespace QuizApp.QuestionGenerators
 
         public Question generateRandomQuestionv1()
         {
-            mathHelpGenerators[3] = new SimpleCalculationGenerator();                   // Neuen Opterator für SimpleCalculationGenerator generieren
-
-            int questionType = random.Next(8);                                          // zufälligen Fragetyp generieren:
-            if (questionType > 3)                                                       // PowerOfTowGenerator: 0, RootGenerator: 1, LogarithmusGenerator: 2,
-            {                                                                           // SimpleCalculationGenerator: 3-7 (weil 4 verschiedene Rechenarten kombiniert)
-                questionType = 3;
-            }                                                                           
+            int questionType = random.Next(7);                                          // zufälligen Fragetyp generieren:
+                                                          
             MathHelpGenerator mathHelpGenerator = mathHelpGenerators[questionType];
             int[] numbers = mathHelpGenerator.getNumbers();                             // zufällige Zahlen für die korrekte Antwort generieren
             string questionText = mathHelpGenerator.getQuestionText(numbers);           // Frage mit Zahlen generieren

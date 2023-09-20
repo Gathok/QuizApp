@@ -37,11 +37,6 @@ namespace QuizApp
             FormClosing += new FormClosingEventHandler(AddQuestionForm_FormClosing); // setze Eventhandler für FormClosing
         }
 
-        private void AddQuestionForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddQ_Add_Click(object sender, EventArgs e)
         {
             if (tbQuestion.Text == "" || tbA1_Add.Text == "" || tbA2_Add.Text == "" || tbA3_Add.Text == "" || tbA4_Add.Text == "")  // wenn ein Textfeld leer ist

@@ -228,7 +228,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "AddQuestionForm";
             Text = "Frage hinzufügen";
-            Load += AddQuestionForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

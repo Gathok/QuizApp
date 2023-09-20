@@ -21,7 +21,6 @@ namespace QuizApp.DataTypes
             if (this.type == "math")
             {
                 name = "Mathe Quiz";
-                setupMathQuiz();
             }
             else if (this.type == "language")
             {
@@ -38,10 +37,10 @@ namespace QuizApp.DataTypes
             questionOrder = createQuestionOrder();
         }
 
-        private void setupMathQuiz()
+        public void setupMathQuiz(int questionAmount)
         {
             MathQuestionGenerator mathQuestionGenerator = new MathQuestionGenerator();
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i < questionAmount; i++)
             {
                 addQuestion(mathQuestionGenerator.generateRandomQuestion());
             }

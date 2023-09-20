@@ -105,7 +105,7 @@
             progressBar.Location = new Point(12, 186);
             progressBar.Margin = new Padding(3, 2, 3, 2);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(487, 22);
+            progressBar.Size = new Size(490, 22);
             progressBar.Step = 50;
             progressBar.TabIndex = 5;
             // 
@@ -124,7 +124,7 @@
             // 
             labelTimer.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             labelTimer.ForeColor = Color.FromArgb(235, 235, 235);
-            labelTimer.Location = new Point(407, 7);
+            labelTimer.Location = new Point(417, 4);
             labelTimer.Name = "labelTimer";
             labelTimer.Size = new Size(83, 19);
             labelTimer.TabIndex = 7;

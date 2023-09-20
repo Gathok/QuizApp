@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuizApp.DataTypes;
+using QuizApp.QuestionGenerators;
 
 namespace QuizApp
 {
@@ -34,31 +35,51 @@ namespace QuizApp
         private void QuizForm_Load(object sender, EventArgs e)
         {
             quiz.restart();     // erzeuge eine neue zufällige Reihenfolge der Fragen + update falls neue Fragen hinzugefügt worden sind
-            if (!quiz.hasMoreQuestions())   // überprüfe ob Fragen vorhanden
+            if (quiz.Type == "math")
             {
-                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind keine Fragen für dieses Quiz vorhanden!", "Keine Fragen");  // wenn nicht, zeige Fehlermeldung
-                msgBox.ShowDialog();
-                this.Close();   // schließe/öffne gar nicht erst Form
-            }
-            else if (quiz.NumberOfQuestions <= 5)   // wenn 5 oder weniger Fragen, frage ob starten
-            {
-                CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind nur " + quiz.NumberOfQuestions + " Fragen vorhanden!\n\n" +
-                                       "Möchtest du trotzdem starten?", "Wenige Fragen", "Ja", "Nein");
-                msgBox.ShowDialog();
-                if (msgBox.DialogResult == DialogResult.Yes)  // wenn ja, starte Quiz/erste Frage
+                QuestionAmountForm questionAmountForm = new QuestionAmountForm(quiz);  // erzeuge QuestionAmountForm
+                questionAmountForm.ShowDialog();    // zeige QuestionAmountForm
+                if (questionAmountForm.DialogResult == DialogResult.No)
                 {
-                    parent.Hide();  // verstecke parent Form
+                    if (!quiz.hasMoreQuestions())   // überprüfe ob Fragen vorhanden
+                    {
+                        CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind keine Fragen für dieses Quiz vorhanden!", "Keine Fragen");  // wenn nicht, zeige Fehlermeldung
+                        msgBox.ShowDialog();
+                        this.Close();   // schließe/öffne gar nicht erst Form
+                    }
+                    else if (quiz.NumberOfQuestions <= 5)   // wenn 5 oder weniger Fragen, frage ob starten
+                    {
+                        CustomMesssageBox msgBox = new CustomMesssageBox(this, "Es sind nur " + quiz.NumberOfQuestions + " Fragen vorhanden!\n\n" +
+                                               "Möchtest du trotzdem starten?", "Wenige Fragen", "Ja", "Nein");
+                        msgBox.ShowDialog();
+                        if (msgBox.DialogResult == DialogResult.Yes)  // wenn ja, starte Quiz/erste Frage
+                        {
+                            parent.Hide();  // verstecke parent Form
+                            this.nextQuestion();
+                        }
+                        else if (msgBox.DialogResult == DialogResult.No)  // wenn nein, schließe QuizForm
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        parent.Hide();  // verstecke parent Form
+                        this.nextQuestion();    // starte Quiz/erste Frage
+                    }
+
+                }
+                else if (questionAmountForm.DialogResult == DialogResult.Yes)  // wenn ja, starte Quiz/erste Frage
+                {
+                    parent.Hide();  // verstecke parent For
+                    quiz.setupMathQuiz((int)questionAmountForm.getQuestionAmount());
+                    questionAmountForm.Close();
                     this.nextQuestion();
                 }
-                else if (msgBox.DialogResult == DialogResult.No)  // wenn nein, schließe QuizForm
+                else
                 {
                     this.Close();
                 }
-            }
-            else
-            {
-                parent.Hide();  // verstecke parent Form
-                this.nextQuestion();    // starte Quiz/erste Frage
             }
         }
 

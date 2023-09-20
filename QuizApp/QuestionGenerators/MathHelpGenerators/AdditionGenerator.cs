@@ -6,29 +6,40 @@ using System.Threading.Tasks;
 
 namespace QuizApp.QuestionGenerators.MathHelpGenerators
 {
-    public class AdditionGenerator : SimpleCalculationGenerator
+    public class AdditionGenerator : MathHelpGenerator
     {
-        public override int calculate(int[] numbers)
+        Random random;
+        public AdditionGenerator()
+        {
+            random = new Random();
+        }
+
+        public int calculate(int[] numbers)
         {
             return numbers[0] + numbers[1];
         }
 
-        public override string getModifiedAnswer(int[] numbers, int modifier)
+        public string getModifiedAnswer(int[] numbers, int modifier)
         {
             numbers[0] += modifier * 10;
             return getAnswer(numbers);
         }
 
-        public override int[] getNumbers()
+        public int[] getNumbers()
         {
             int number1 = random.Next(1, 1000);
             int number2 = random.Next(1, 1000);
             return new int[] { number1, number2 };
         }
 
-        public override string getQuestionText(int[] numbers)
+        public string getQuestionText(int[] numbers)
         {
             return numbers[0].ToString() + " + " + numbers[1].ToString() + " = ?";
+        }
+
+        public string getAnswer(int[] numbers)
+        {
+            return calculate(numbers).ToString();
         }
     }
 }

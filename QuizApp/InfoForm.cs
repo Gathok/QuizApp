@@ -35,5 +35,17 @@ namespace QuizApp
         {
             startUpForm.Enabled = true;     // unfreeze startUpForm
         }
+
+        private void btnAddLangQ_Click(object sender, EventArgs e)
+        {
+            AddQuestionForm addQuestionForm = new AddQuestionForm(this, startUpForm, "language");
+            addQuestionForm.ShowDialog();
+        }
+
+        private void btnAddGeneralQ_Click(object sender, EventArgs e)
+        {
+            AddQuestionForm addQuestionForm = new AddQuestionForm(this, startUpForm, "general");
+            addQuestionForm.ShowDialog();
+        }
     }
 }

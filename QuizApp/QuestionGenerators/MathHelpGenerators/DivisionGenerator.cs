@@ -6,29 +6,45 @@ using System.Threading.Tasks;
 
 namespace QuizApp.QuestionGenerators.MathHelpGenerators
 {
-    public class DivisionGenerator : SimpleCalculationGenerator
+    public class DivisionGenerator : MathHelpGenerator
     {
-        public override int calculate(int[] numbers)
+        Random random;
+
+        public DivisionGenerator()
+        {
+            random = new Random();
+        }
+
+        public int calculate(int[] numbers)
         {
             return numbers[0] / numbers[1];
         }
 
-        public override string getModifiedAnswer(int[] numbers, int modifier)
+        public string getAnswer(int[] numbers)
         {
-            numbers[0] += modifier;
-            return getAnswer(numbers);
+            return calculate(numbers).ToString();
         }
 
-        public override int[] getNumbers()
+        public string getModifiedAnswer(int[] numbers, int modifier)
         {
-            double number1 = random.Next(1, 400)/4;     // soll das Ergebnis sein, durch vier, damit es nicht nur Natürliche Zahlen sondern auch viertel gibt
-            int number2 = random.Next(1, 20);           // soll der Divisor sein
-            int number3 = number1 * number2;            // soll der Dividend sein
+            return (calculate(numbers) + modifier).ToString();
         }
 
-        public override string getQuestionText(int[] numbers)
+        public int[] getNumbers()
         {
-            throw new NotImplementedException();
+            int number1 = random.Next(1, 100);
+            int number2 = random.Next(1, 100);
+            while (number1 % number2 != 0)
+            {
+                number1 = random.Next(1, 100);
+                number2 = random.Next(1, 100);
+            }
+            return new int[] { number1, number2 };
+        }
+
+        public string getQuestionText(int[] numbers)
+        {
+            return numbers[0] + " / " + numbers[1] + " = ?";
         }
     }
 }
