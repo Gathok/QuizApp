@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\malar\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Malte\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\malar\\.nuget\\packages"
     ],
     "configProperties": {
