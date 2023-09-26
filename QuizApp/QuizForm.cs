@@ -74,10 +74,12 @@ namespace QuizApp
                     parent.Hide();  // verstecke parent For
                     quiz.setupMathQuiz((int)questionAmountForm.getQuestionAmount());
                     questionAmountForm.Close();
+                    this.reset();
                     this.nextQuestion();
                 }
                 else
                 {
+                    CustomMesssageBox msgBox = new CustomMesssageBox(this, "Error", "error");
                     this.Close();
                 }
             }
@@ -124,6 +126,7 @@ namespace QuizApp
             score = 0;
             labelScore.Text = "Score: " + score;
             progressBar.Value = 0;
+            progressBar.Maximum = quiz.NumberOfQuestions;
             scoreTimer.reset();
         }
 

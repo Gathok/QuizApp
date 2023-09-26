@@ -7,9 +7,6 @@
     <Compile Update="CustomMesssageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FlagQuizForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
