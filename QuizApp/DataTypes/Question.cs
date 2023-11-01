@@ -27,7 +27,7 @@ namespace QuizApp.DataTypes
             for (int i = 0; i < answers.Length; i++)        // geht alle Antworten durch
             {
                 string temp = answers[i];                   // speichere Antwort an Stelle i in temp
-                answers[i] += answers[randomIndex];         // überschreibe Antwort an Stelle i mit Antwort an Stelle randomIndex
+                answers[i] = answers[randomIndex];         // überschreibe Antwort an Stelle i mit Antwort an Stelle randomIndex
                 answers[randomIndex] = temp;                // überschreibe Antwort an Stelle randomIndex mit temp
                 if (i == correctAnswer)                     // wenn i die richtige Antwort ist
                 {

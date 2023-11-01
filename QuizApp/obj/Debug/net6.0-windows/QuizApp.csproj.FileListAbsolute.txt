@@ -38,7 +38,6 @@ C:\Users\malar\Documents\Codes\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.
 E:\Codes\C#\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.AddQuestionForm.resources
 E:\Codes\C#\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.Properties.Resources.resources
 E:\Codes\C#\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.CustomMesssageBox.resources
-E:\Codes\C#\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.FlagQuizForm.resources
 E:\Codes\C#\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.QuestionGenerators.QuestionAmountForm.resources
 C:\Users\malar\Documents\Codes\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.CustomMesssageBox.resources
 C:\Users\malar\Documents\Codes\QuizApp\QuizApp\obj\Debug\net6.0-windows\QuizApp.Properties.Resources.resources
